@@ -1,0 +1,6 @@
+---
+# defaults file for timezone
+timezone: Europe/Oslo
+
+
+FallbackNTP: 0.no.pool.ntp.org 1.no.pool.ntp.org 2.no.pool.ntp.org 3.no.pool.ntp.org 4.no.pool.ntp.org

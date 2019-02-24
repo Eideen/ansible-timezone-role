@@ -1,0 +1,12 @@
+---
+# tasks file for timezone
+- name: set timezone to {{timezone}}
+  timezone:
+    name: "{{timezone}}"
+
+- name: set FallbackNTP
+  lineinfile:
+    path: /etc/systemd/timesyncd.conf
+    regexp: '^FallbackNTP='
+    insertafter: '^#FallbackNTP='
+    line: "FallbackNTP={{ FallbackNTP }}"
