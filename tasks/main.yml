@@ -38,3 +38,80 @@
     regexp: '^NTP='
   when: NTP is not defined
   notify: restart systemd-timesyncd
+
+- name: set NTP
+  lineinfile:
+    path: /etc/systemd/timesyncd.conf
+    regexp: '^NTP='
+    insertafter: '^#NTP='
+    line: "NTP={{ NTP }}"
+  when: NTP is  defined
+  notify: restart systemd-timesyncd
+
+- name: set RootDistanceMaxSec
+  lineinfile:
+    path: /etc/systemd/timesyncd.conf
+    regexp: '^RootDistanceMaxSec='
+    insertafter: '^#RootDistanceMaxSec='
+    line: "RootDistanceMaxSec={{ ROOTDISTANCEMAXSEC }}"
+  when: ROOTDISTANCEMAXSEC is  defined
+  notify: restart systemd-timesyncd
+
+- name: remove RootDistanceMaxSec
+  lineinfile:
+    state: absent
+    path: /etc/systemd/timesyncd.conf
+    regexp: '^RootDistanceMaxSec='
+  when: ROOTDISTANCEMAXSEC is not defined
+  notify: restart systemd-timesyncd
+
+- name: set PollIntervalMinSec
+  lineinfile:
+    path: /etc/systemd/timesyncd.conf
+    regexp: '^PollIntervalMinSec='
+    insertafter: '^#PollIntervalMinSec='
+    line: "PollIntervalMinSec={{ POLLINTERVALMINSEC }}"
+  when: POLLINTERVALMINSEC is  defined
+  notify: restart systemd-timesyncd
+
+- name: remove PollIntervalMinSec
+  lineinfile:
+    state: absent
+    path: /etc/systemd/timesyncd.conf
+    regexp: '^PollIntervalMinSec='
+  when: POLLINTERVALMINSEC is not defined
+  notify: restart systemd-timesyncd
+
+- name: set PollIntervalMinSec
+  lineinfile:
+    path: /etc/systemd/timesyncd.conf
+    regexp: '^PollIntervalMinSec='
+    insertafter: '^#PollIntervalMinSec='
+    line: "PollIntervalMinSec={{ POLLINTERVALMINSEC }}"
+  when: POLLINTERVALMINSEC is  defined
+  notify: restart systemd-timesyncd
+
+- name: remove PollIntervalMinSec
+  lineinfile:
+    state: absent
+    path: /etc/systemd/timesyncd.conf
+    regexp: '^PollIntervalMinSec='
+  when: POLLINTERVALMINSEC is not defined
+  notify: restart systemd-timesyncd
+
+- name: set PollIntervalMaxSec
+  lineinfile:
+    path: /etc/systemd/timesyncd.conf
+    regexp: '^PollIntervalMaxSec='
+    insertafter: '^#PollIntervalMaxSec='
+    line: "PollIntervalMaxSec={{ POLLINTERVALMAXSEC }}"
+  when: POLLINTERVALMAXSEC is  defined
+  notify: restart systemd-timesyncd
+
+- name: remove PollIntervalMaxSec
+  lineinfile:
+    state: absent
+    path: /etc/systemd/timesyncd.conf
+    regexp: '^PollIntervalMaxSec='
+  when: POLLINTERVALMAXSEC is not defined
+  notify: restart systemd-timesyncd
