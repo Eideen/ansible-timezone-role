@@ -1,2 +1,6 @@
 ---
 # handlers file for timezone
+- name: restart systemd-timesyncd
+  systemd:
+    state: restarted
+    name: systemd-timesyncd

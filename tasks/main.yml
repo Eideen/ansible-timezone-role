@@ -10,3 +10,30 @@
     regexp: '^FallbackNTP='
     insertafter: '^#FallbackNTP='
     line: "FallbackNTP={{ FallbackNTP }}"
+  when: FallbackNTP is defined
+  notify: restart systemd-timesyncd
+
+- name: remove FallbackNTP
+  lineinfile:
+    state: absent
+    path: /etc/systemd/timesyncd.conf
+    regexp: '^FallbackNTP='
+  when: FallbackNTP is not defined
+  notify: restart systemd-timesyncd
+
+- name: set NTP
+  lineinfile:
+    path: /etc/systemd/timesyncd.conf
+    regexp: '^NTP='
+    insertafter: '^#NTP='
+    line: "NTP={{ NTP }}"
+  when: NTP is  defined
+  notify: restart systemd-timesyncd
+
+- name: remove NTP
+  lineinfile:
+    state: absent
+    path: /etc/systemd/timesyncd.conf
+    regexp: '^NTP='
+  when: NTP is not defined
+  notify: restart systemd-timesyncd
