@@ -10,9 +10,10 @@ A system that uses systemd-timesync deamon.
 
 Role Variables
 --------------
-NTP:          sets primary NTP servers.
-FallbackNTP:  sets Fallback NTP server, used when all there is no DHCP NTP or main NTP severs available.
-timezone:   sets timezone. Available variables can be found her: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+* NTP: sets primary NTP servers.
+* FallbackNTP:  Sets Fallback NTP server, used when all there is no DHCP NTP or main NTP severs available.
+* timezone: Sets timezone. Available variables can be found her: https://wikipedia.org/wiki/List_of_tz_database_time_zones
 
 For "FallbackNTP" and "NTP", if not defined, they will be removed.
 
@@ -23,8 +24,6 @@ No dependencies of other roles.
 
 Example Playbook
 ----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
 ````yaml
     - hosts: all
