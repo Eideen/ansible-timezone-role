@@ -1,31 +1,40 @@
-Role Name
+ansible-timezone-role
 =========
 
-A brief description of the role goes here.
+Role sets timezone, and sets and remove systemd ntp and FallbackNTP.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+A system that uses systemd-timesync deamon.
 
 Role Variables
 --------------
+NTP:          sets primary NTP servers.
+FallbackNTP:  sets Fallback NTP server, used when all there is no DHCP NTP or main NTP severs available.
+timezone:   sets timezone. Available variables can be found her: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+For "FallbackNTP" and "NTP", if not defined, they will be removed.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+No dependencies of other roles.
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+````yaml
+    - hosts: all
       roles:
-         - { role: username.rolename, x: 42 }
+         - ansible-timezone-role
+      vars:
+        timezone: Europe/Oslo
+        NTP: 192.168.0.1 192.168.0.2
+        FallbackNTP: 0.pool.ntp.org 1.pool.ntp.org
+````
 
 License
 -------
@@ -35,4 +44,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+https://github.com/Eideen/
